@@ -1,1 +1,1 @@
-# AI-ARTS-STUDIO
+<p align="center"> <img src="https://forthebadge.com/images/featured/featured-built-with-love.svg" alt="Built with Love" /> <img src="https://forthebadge.com/images/featured/featured-made-with-markdown.svg" alt="Markdown" /> </p><p align="center"> Built by <strong>[Your Name/Studio Name]</strong><br/> © 2024 AI-ARTS-STUDIO. All rights reserved. </p>
