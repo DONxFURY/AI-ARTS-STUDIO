@@ -1,7 +1,7 @@
 # AI-ARTS-STUDIO
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/master/icons/folder-art-open.svg" width="120" alt="AI Arts Studio Logo" />
+  <img src="[https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/master/icons/folder-art-open.svg](https://i.imgur.com/O9sjMgk.png)" width="120" alt="AI Arts Studio Logo" />
 </p>
 
 <h2 align="center">Where Neurons Meet the Canvas</h2>
