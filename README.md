@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <a href="https://your-demo-link.com"><strong>Explore the Gallery →</strong></a>
+  <a href="https://aiartsstudio.store"><strong>Explore the Gallery →</strong></a>
 </p>
 
 <p align="center">
