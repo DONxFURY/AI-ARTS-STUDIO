@@ -19,7 +19,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Status-Live-brightgreen?style=for-the-badge" alt="Status Live" />
   <img src="https://img.shields.io/badge/Engine-Stable%20Diffusion-blueviolet?style=for-the-badge" alt="Engine Stable Diffusion" />
-  <img src="https://img.shields.io/badge/UI-Next.js%2014-black?style=for-the-badge" alt="UI Next.js 14" />
+  <img src="https://img.shields.io/badge/Frontend-HTML%20%7C%20CSS-black?style=for-the-badge" alt="HTML and CSS" />
 </p>
 
 <p align="center">
