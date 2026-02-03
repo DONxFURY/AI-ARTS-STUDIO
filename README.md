@@ -21,4 +21,4 @@
   <img src="https://img.shields.io/badge/Engine-Stable%20Diffusion-blueviolet?style=for-the-badge" />
   <img src="https://img.shields.io/badge/UI-Next.js%2014-black?style=for-the-badge" />
 </p>
-⚠️ This project is protected by a proprietary license. Unauthorized use is prohibited.
+       ⚠️ This project is protected by a proprietary license. Unauthorized use is prohibited.
