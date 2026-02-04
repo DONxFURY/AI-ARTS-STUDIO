@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ai Arts Studio</title>
+  <title>Ai Arts Studio - Premium AI Branding</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -11,37 +11,106 @@
     :root {
       --neon-blue: #00f3ff;
       --neon-purple: #b967ff;
+      --neon-pink: #ff00ff;
       --matrix-green: #00ff41;
       --dark-bg: #0a0a12;
+      --darker-bg: #050508;
+      --card-bg: rgba(15, 15, 25, 0.9);
     }
 
-    body { font-family: 'Exo 2', sans-serif; background: var(--dark-bg); color: #fff; overflow-x: hidden; }
+    body { 
+      font-family: 'Exo 2', sans-serif; 
+      background: var(--dark-bg); 
+      color: #fff; 
+      overflow-x: hidden;
+      padding-top: 80px;
+    }
+
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--neon-blue);
+      font-size: 1.8rem;
+      cursor: pointer;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      z-index: 1001;
+    }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 5%;
-      background: rgba(5,5,8,0.85);
+      padding: 1.2rem 5%;
+      background: rgba(5,5,8,0.95);
       backdrop-filter: blur(10px);
       position: fixed;
       top: 0;
       width: 100%;
       z-index: 1000;
+      border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     }
-    .logo-header img { height: 60px; }
-    .nav-links { display: flex; gap: 2rem; }
+    .logo-header img { 
+      height: 50px; 
+      transition: all 0.3s;
+    }
+    .logo-header img:hover {
+      filter: drop-shadow(0 0 10px var(--neon-blue));
+    }
+    .nav-links { 
+      display: flex; 
+      gap: 2.5rem; 
+    }
     .nav-link {
-      color: #aaa;
+      color: #ccc;
       text-decoration: none;
       font-family: 'Orbitron', sans-serif;
       font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
       transition: all 0.3s;
+      padding: 0.5rem 0;
+      position: relative;
     }
-    .nav-link:hover { color: var(--neon-blue); }
+    .nav-link:hover { 
+      color: var(--neon-blue); 
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .nav-link.active {
+      color: var(--neon-blue);
+    }
+    .nav-link.active::after {
+      width: 100%;
+    }
 
+    /* Page container for multi-page navigation */
+    .page-container {
+      min-height: 80vh;
+      display: none;
+    }
+    .page-container.active {
+      display: block;
+    }
+
+    /* Hero Section */
     .hero {
-      min-height: 100vh;
+      min-height: 90vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -51,12 +120,32 @@
       position: relative;
       overflow: hidden;
     }
-    .hero img.logo {
-      height: 200px;
-      margin-bottom: 2rem;
-      animation: fadeInZoom 2s forwards;
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(0, 243, 255, 0.05) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(185, 103, 255, 0.05) 0%, transparent 50%);
+      z-index: -1;
     }
-    @keyframes fadeInZoom { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+    .hero img.logo {
+      height: 180px;
+      margin-bottom: 2rem;
+      animation: fadeInZoom 2s forwards, float 6s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px rgba(0, 243, 255, 0.5));
+      max-width: 90%;
+    }
+    @keyframes fadeInZoom { 
+      from { opacity: 0; transform: scale(0.8); } 
+      to { opacity: 1; transform: scale(1); } 
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.02); }
+    }
     .hero h1 {
       font-family: 'Orbitron', sans-serif;
       font-size: 3.5rem;
@@ -65,39 +154,268 @@
       margin-bottom: 1rem;
       text-shadow: 0 0 20px var(--neon-blue),0 0 40px var(--neon-purple);
     }
-    .hero p { font-size: 1.5rem; color: #ccc; margin-bottom: 2rem; }
+    .hero p { 
+      font-size: 1.5rem; 
+      color: #ccc; 
+      margin-bottom: 2.5rem;
+      max-width: 800px;
+      line-height: 1.6;
+    }
     .hero .btn {
       display: inline-block;
-      padding: 1rem 2rem;
+      padding: 1rem 2.5rem;
       margin: 0 1rem;
       border: 2px solid var(--neon-blue);
       color: var(--neon-blue);
       font-weight: 700;
       text-decoration: none;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
       transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
     }
-    .hero .btn:hover { background: rgba(0,243,255,0.1); transform: scale(1.1); }
+    .hero .btn:hover { 
+      background: rgba(0,243,255,0.15); 
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 243, 255, 0.3);
+    }
+    .hero .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.2), transparent);
+      transition: left 0.7s;
+      z-index: -1;
+    }
+    .hero .btn:hover::before {
+      left: 100%;
+    }
 
-    section { padding: 5% 5%; }
-
-    /* Portfolio Grid */
+    /* Portfolio Section */
+    #portfolio {
+      padding: 5% 5%;
+    }
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--neon-blue);
+      margin-bottom: 3rem;
+      text-align: center;
+      text-shadow: 0 0 15px var(--neon-blue);
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+    }
     .portfolio {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 2rem;
     }
-    .portfolio img {
+    .portfolio-item {
       border-radius: 10px;
-      transition: transform 0.5s, filter 0.5s, box-shadow 0.5s;
-      width: 100%;
-      height: auto;
-      max-width: 100%;
-      object-fit: cover;
+      overflow: hidden;
+      position: relative;
+      height: 280px;
+      transition: all 0.5s;
+      background: var(--card-bg);
+      border: 1px solid rgba(0, 243, 255, 0.1);
     }
-    .portfolio img:hover {
-      transform: scale(1.1);
-      filter: brightness(1.3);
-      box-shadow: 0 0 20px var(--neon-blue);
+    .portfolio-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.5s;
+    }
+    .portfolio-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 243, 255, 0.3);
+      border-color: var(--neon-blue);
+    }
+    .portfolio-item:hover img {
+      transform: scale(1.05);
+      filter: brightness(1.2);
+    }
+
+    /* Pricing Page */
+    #pricing {
+      padding: 5% 5%;
+    }
+    .pricing-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 4rem;
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: #ccc;
+    }
+    .pricing-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+    .pricing-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(185, 103, 255, 0.1);
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--neon-purple);
+      box-shadow: 0 15px 30px rgba(185, 103, 255, 0.2);
+    }
+    .pricing-card.popular {
+      border: 2px solid var(--neon-blue);
+      transform: scale(1.05);
+    }
+    .pricing-card.popular::before {
+      content: 'POPULAR';
+      position: absolute;
+      top: 20px;
+      right: -35px;
+      background: var(--neon-blue);
+      color: var(--darker-bg);
+      padding: 5px 40px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transform: rotate(45deg);
+      letter-spacing: 1px;
+    }
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .pricing-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: var(--neon-blue);
+      margin-bottom: 1rem;
+    }
+    .pricing-price {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .pricing-price span {
+      font-size: 1.2rem;
+      color: #aaa;
+    }
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 2.5rem;
+    }
+    .pricing-features li {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: #ccc;
+      display: flex;
+      align-items: center;
+    }
+    .pricing-features li i {
+      color: var(--matrix-green);
+      margin-right: 10px;
+      font-size: 1.1rem;
+    }
+    .pricing-btn {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      text-align: center;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+      color: var(--darker-bg);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s;
+      letter-spacing: 1px;
+    }
+    .pricing-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 243, 255, 0.3);
+    }
+
+    /* Services Page */
+    #services {
+      padding: 5% 5%;
+    }
+    .services-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 4rem;
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: #ccc;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+    .service-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(255, 0, 255, 0.1);
+      transition: all 0.4s;
+      height: 100%;
+    }
+    .service-card:hover {
+      border-color: var(--neon-pink);
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(255, 0, 255, 0.2);
+    }
+    .service-icon {
+      font-size: 3rem;
+      color: var(--neon-pink);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .service-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: var(--neon-pink);
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    .service-description {
+      color: #ccc;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .service-features {
+      list-style: none;
+      margin-top: 1.5rem;
+    }
+    .service-features li {
+      padding: 0.5rem 0;
+      color: #aaa;
+      display: flex;
+      align-items: center;
+    }
+    .service-features li i {
+      color: var(--neon-purple);
+      margin-right: 10px;
     }
 
     /* Community Section */
@@ -107,7 +425,8 @@
       background: rgba(5,5,8,0.9);
       border-radius: 15px;
       box-shadow: 0 0 30px rgba(0,243,255,0.2);
-      margin-top: 3rem;
+      margin: 5rem auto;
+      max-width: 1200px;
     }
     #community h2 {
       font-family: 'Orbitron', sans-serif;
@@ -140,66 +459,613 @@
       box-shadow: 0 0 15px var(--neon-purple), 0 0 25px var(--neon-blue);
     }
 
+    /* Footer */
     footer {
       text-align: center;
-      padding: 2rem 0;
+      padding: 3rem 0 2rem;
       color: #888;
       border-top: 1px solid #222;
       margin-top: 5rem;
+      background: rgba(5,5,8,0.8);
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-link {
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-link:hover {
+      color: var(--neon-blue);
+    }
+    .copyright {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Responsive Design - Improved */
+    @media (max-width: 1024px) {
+      .hero h1 {
+        font-size: 3rem;
+      }
+      .hero p {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      header {
+        padding: 1rem 5%;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      
+      .logo-header {
+        margin-bottom: 0;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        flex-direction: column;
+        background: rgba(5,5,8,0.98);
+        width: 100%;
+        text-align: center;
+        padding: 2rem 0;
+        gap: 1.5rem;
+        transition: 0.3s;
+        border-top: 1px solid rgba(0, 243, 255, 0.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
+      
+      .nav-links.active {
+        left: 0;
+      }
+      
+      .nav-link {
+        font-size: 1.2rem;
+        padding: 1rem;
+      }
+      
+      .hero {
+        min-height: 70vh;
+        padding: 2rem 5%;
+      }
+      
+      .hero img.logo {
+        height: 140px;
+        margin-bottom: 1.5rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+        line-height: 1.2;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+      }
+      
+      .hero .btn {
+        padding: 0.8rem 1.5rem;
+        margin: 0.5rem;
+        display: block;
+        width: 250px;
+        margin: 0.5rem auto;
+      }
+      
+      .section-title {
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+      }
+      
+      .portfolio {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+      
+      .portfolio-item {
+        height: 250px;
+      }
+      
+      .pricing-container,
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .pricing-card.popular {
+        transform: none;
+      }
+      
+      .pricing-card.popular::before {
+        font-size: 0.7rem;
+        right: -30px;
+        padding: 5px 30px;
+      }
+      
+      #community {
+        margin: 3rem 5%;
+        padding: 3rem 5%;
+      }
+      
+      #community h2 {
+        font-size: 2rem;
+      }
+      
+      #community p {
+        font-size: 1.1rem;
+      }
+      
+      #community .btn {
+        display: block;
+        margin: 1rem auto;
+        max-width: 250px;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero img.logo {
+        height: 120px;
+      }
+      
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .portfolio {
+        grid-template-columns: 1fr;
+      }
+      
+      .portfolio-item {
+        height: 220px;
+      }
+      
+      .pricing-card,
+      .service-card {
+        padding: 2rem 1.5rem;
+      }
+      
+      .pricing-price {
+        font-size: 2.5rem;
+      }
+      
+      .service-icon {
+        font-size: 2.5rem;
+      }
+      
+      .service-title {
+        font-size: 1.5rem;
+      }
+      
+      #community h2 {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* Landscape mode adjustments */
+    @media (max-height: 600px) and (orientation: landscape) {
+      .hero {
+        min-height: 100vh;
+      }
+      
+      .hero img.logo {
+        height: 100px;
+        margin-bottom: 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .nav-links {
+        top: 60px;
+      }
     }
   </style>
 </head>
 <body>
 
+  <button class="menu-toggle" id="mobileMenuToggle">
+    <i class="fas fa-bars"></i>
+  </button>
+
   <header>
     <div class="logo-header">
       <img src="https://i.imgur.com/O9sjMgk.png" alt="Ai Arts Studio Logo">
     </div>
-    <nav class="nav-links">
-      <a href="#portfolio" class="nav-link">Portfolio</a>
-      <a href="#community" class="nav-link">Community</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" class="nav-link active" data-page="home">Home</a>
+      <a href="#portfolio" class="nav-link" data-page="portfolio">Portfolio</a>
+      <a href="#services" class="nav-link" data-page="services">Services</a>
+      <a href="#pricing" class="nav-link" data-page="pricing">Pricing</a>
+      <a href="#community" class="nav-link" data-page="community">Community</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <img src="https://i.imgur.com/O9sjMgk.png" alt="Ai Arts Studio Logo" class="logo">
-    <h1>Premium AI-Assisted Branding</h1>
-    <p>Fast. Stunning. Unforgettable.</p>
-    <div>
-      <a href="https://discord.com" target="_blank" class="btn">Join Our Discord</a>
-      <a href="https://facebook.com" target="_blank" class="btn">Join Our Facebook</a>
+  <!-- Home Page -->
+  <section id="home" class="page-container active">
+    <div class="hero">
+      <img src="https://i.imgur.com/O9sjMgk.png" alt="Ai Arts Studio Logo" class="logo">
+      <h1>Premium AI-Assisted Branding</h1>
+      <p>Fast. Stunning. Unforgettable. We create logos, banners, and complete branding packages using cutting-edge AI technology combined with expert design skills.</p>
+      <div>
+        <a href="#pricing" class="btn nav-link" data-page="pricing">View Pricing</a>
+        <a href="#portfolio" class="btn nav-link" data-page="portfolio">View Portfolio</a>
+      </div>
     </div>
   </section>
 
-  <section id="portfolio">
-    <h2>Our Work</h2>
+  <!-- Portfolio Page -->
+  <section id="portfolio" class="page-container">
+    <h2 class="section-title">Our Portfolio</h2>
     <div class="portfolio">
-      <img src="https://i.imgur.com/RayQ5OL.png" alt="Logo 1">
-      <img src="https://i.imgur.com/IVcngrI.png" alt="Logo 2">
-      <img src="https://i.imgur.com/Y84lohU.png" alt="Logo 3">
-      <img src="https://i.imgur.com/JvZWB3r.png" alt="Logo 4">
-      <img src="https://i.imgur.com/Nv2fUQK.png" alt="Logo 5">
-      <img src="https://i.imgur.com/haXKs3B.png" alt="Logo 6">
-      <img src="https://i.imgur.com/rEyKIHm.png" alt="Logo 7">
-      <img src="https://i.imgur.com/we6GMR3.png" alt="Logo 8">
-      <img src="https://i.imgur.com/6a16y23.png" alt="Logo 9">
-      <img src="https://i.imgur.com/wqBWnMj.png" alt="Logo 10">
-      <img src="https://i.imgur.com/uOeKftn.png" alt="Logo 11">
+      <div class="portfolio-item"><img src="https://i.imgur.com/RayQ5OL.png" alt="Logo 1"></div>
+      <div class="portfolio-item"><img src="https://i.imgur.com/IVcngrI.png" alt="Logo 2"></div>
+      <div class="portfolio-item"><img src="https://i.imgur.com/Y84lohU.png" alt="Logo 3"></div>
+      <div class="portfolio-item"><img src="https://i.imgur.com/JvZWB3r.png" alt="Logo 4"></div>
+      <div class="portfolio-item"><img src="https://i.imgur.com/Nv2fUQK.png" alt="Logo 5"></div>
+      <div class="portfolio-item"><img src="https://i.imgur.com/haXKs3B.png" alt="Logo 6"></div>
+      <div class="portfolio-item"><img src="https://i.imgur.com/rEyKIHm.png" alt="Logo 7"></div>
+      <div class="portfolio-item"><img src="https://i.imgur.com/we6GMR3.png" alt="Logo 8"></div>
+      <div class="portfolio-item"><img src="https://i.imgur.com/6a16y23.png" alt="Logo 9"></div>
+      <div class="portfolio-item"><img src="https://i.imgur.com/wqBWnMj.png" alt="Logo 10"></div>
+      <div class="portfolio-item"><img src="https://i.imgur.com/uOeKftn.png" alt="Logo 11"></div>
+      <div class="portfolio-item"><img src="https://i.imgur.com/jUN4pdU.png" alt="Banner 1"></div>
     </div>
   </section>
 
-  <section id="community">
+  <!-- Services Page -->
+  <section id="services" class="page-container">
+    <h2 class="section-title">Our Services</h2>
+    <p class="services-intro">We offer a wide range of AI-assisted design services to help your brand stand out. Each service is tailored to your specific needs and vision.</p>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-crown"></i>
+        </div>
+        <h3 class="service-title">Logo Design</h3>
+        <p class="service-description">Create a unique and memorable logo that represents your brand identity. We offer multiple styles to match your vision.</p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> Minimalist & Modern</li>
+          <li><i class="fas fa-check"></i> Vintage & Retro</li>
+          <li><i class="fas fa-check"></i> Abstract & Artistic</li>
+          <li><i class="fas fa-check"></i> Mascot & Character</li>
+          <li><i class="fas fa-check"></i> 3D & Isometric</li>
+        </ul>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-flag"></i>
+        </div>
+        <h3 class="service-title">Banner Design</h3>
+        <p class="service-description">Eye-catching banners for social media, websites, and events. Perfect for promotions, announcements, and brand visibility.</p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> YouTube Channel Art</li>
+          <li><i class="fas fa-check"></i> Twitch Overlays & Panels</li>
+          <li><i class="fas fa-check"></i> Social Media Headers</li>
+          <li><i class="fas fa-check"></i> Website Headers</li>
+          <li><i class="fas fa-check"></i> Event & Promotion Banners</li>
+        </ul>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fab fa-discord"></i>
+        </div>
+        <h3 class="service-title">Discord Branding</h3>
+        <p class="service-description">Complete Discord server branding including server icons, emojis, banners, and role icons to make your community stand out.</p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> Custom Server Icons</li>
+          <li><i class="fas fa-check"></i> Animated Server Banners</li>
+          <li><i class="fas fa-check"></i> Custom Emojis & Stickers</li>
+          <li><i class="fas fa-check"></i> Role Icons & Badges</li>
+          <li><i class="fas fa-check"></i> Welcome Images & Graphics</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Page -->
+  <section id="pricing" class="page-container">
+    <h2 class="section-title">Pricing Plans</h2>
+    <p class="pricing-intro">Transparent pricing for all our services. Each package includes revisions and source files. Custom quotes available for complex projects.</p>
+    
+    <div class="pricing-container">
+      <!-- Logo Design Plans -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3 class="pricing-title">Basic Logo</h3>
+          <div class="pricing-price">$15<span>/one-time</span></div>
+          <p>Perfect for startups and small businesses</p>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> 1 Custom Logo Concept</li>
+          <li><i class="fas fa-check"></i> 2 Revisions</li>
+          <li><i class="fas fa-check"></i> High-resolution Files</li>
+          <li><i class="fas fa-check"></i> Black & White Version</li>
+          <li><i class="fas fa-check"></i> 3 Business Days Delivery</li>
+        </ul>
+        <a href="https://discord.com" target="_blank" class="pricing-btn">Order Now</a>
+      </div>
+      
+      <div class="pricing-card popular">
+        <div class="pricing-header">
+          <h3 class="pricing-title">Premium Logo</h3>
+          <div class="pricing-price">$30<span>/one-time</span></div>
+          <p>Our most popular package</p>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> 3 Custom Logo Concepts</li>
+          <li><i class="fas fa-check"></i> Unlimited Revisions</li>
+          <li><i class="fas fa-check"></i> All File Formats</li>
+          <li><i class="fas fa-check"></i> Color Variations</li>
+          <li><i class="fas fa-check"></i> Stationery Mockups</li>
+          <li><i class="fas fa-check"></i> 48 Hours Delivery</li>
+        </ul>
+        <a href="https://discord.com" target="_blank" class="pricing-btn">Order Now</a>
+      </div>
+      
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3 class="pricing-title">Brand Identity</h3>
+          <div class="pricing-price">$40<span>/one-time</span></div>
+          <p>Complete branding package</p>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> Everything in Premium</li>
+          <li><i class="fas fa-check"></i> Brand Style Guide</li>
+          <li><i class="fas fa-check"></i> Social Media Kit</li>
+          <li><i class="fas fa-check"></i> Business Card Design</li>
+          <li><i class="fas fa-check"></i> Letterhead & Envelope</li>
+          <li><i class="fas fa-check"></i> 5 Business Days Delivery</li>
+        </ul>
+        <a href="https://discord.com" target="_blank" class="pricing-btn">Order Now</a>
+      </div>
+      
+      <!-- Banner Design Plans -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3 class="pricing-title">Banner Design</h3>
+          <div class="pricing-price">15<span>/each</span></div>
+          <p>Professional banners for any platform</p>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> Custom Size & Format</li>
+          <li><i class="fas fa-check"></i> 2 Design Concepts</li>
+          <li><i class="fas fa-check"></i> 3 Revisions</li>
+          <li><i class="fas fa-check"></i> Source Files Included</li>
+          <li><i class="fas fa-check"></i> 2 Business Days Delivery</li>
+        </ul>
+        <a href="https://discord.com" target="_blank" class="pricing-btn">Order Now</a>
+      </div>
+      
+      <!-- Discord Branding Plans -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3 class="pricing-title">Discord Package</h3>
+          <div class="pricing-price">$100<span>/package</span></div>
+          <p>Complete Discord server branding</p>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> Custom Server Icon</li>
+          <li><i class="fas fa-check"></i> Animated Server Banner</li>
+          <li><i class="fas fa-check"></i> 10 Custom Emojis</li>
+          <li><i class="fas fa-check"></i> Role Icons (up to 10)</li>
+          <li><i class="fas fa-check"></i> Welcome & Rules Graphics</li>
+          <li><i class="fas fa-check"></i> 5 Business Days Delivery</li>
+        </ul>
+        <a href="https://discord.com" target="_blank" class="pricing-btn">Order Now</a>
+      </div>
+      
+      <!-- Custom Package -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3 class="pricing-title">Custom Package</h3>
+          <div class="pricing-price">Custom</div>
+          <p>Tailored to your specific needs</p>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> Mix & Match Services</li>
+          <li><i class="fas fa-check"></i> Custom Requirements</li>
+          <li><i class="fas fa-check"></i> Priority Support</li>
+          <li><i class="fas fa-check"></i> Flexible Timeline</li>
+          <li><i class="fas fa-check"></i> Dedicated Designer</li>
+          <li><i class="fas fa-check"></i> Get a Custom Quote</li>
+        </ul>
+        <a href="https://discord.com" target="_blank" class="pricing-btn">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Page -->
+  <section id="community" class="page-container">
     <h2>Join Our Community</h2>
-    <p>Connect with creators, get feedback, and access exclusive resources.</p>
+    <p>Connect with creators, get feedback, and access exclusive resources. Join our Discord for free design tips, weekly challenges, and special offers for community members.</p>
     <div>
-      <a href="https://discord.com" target="_blank" class="btn">Join Discord</a>
-      <a href="https://facebook.com" target="_blank" class="btn">Join Facebook</a>
+      <a href="https://discord.com" target="_blank" class="btn"><i class="fab fa-discord"></i> Join Discord</a>
+      <a href="https://facebook.com" target="_blank" class="btn"><i class="fab fa-facebook"></i> Join Facebook</a>
     </div>
   </section>
 
   <footer>
-    &copy; 2026 Ai Arts Studio. All rights reserved.
+    <div class="footer-links">
+      <a href="#home" class="footer-link nav-link" data-page="home">Home</a>
+      <a href="#portfolio" class="footer-link nav-link" data-page="portfolio">Portfolio</a>
+      <a href="#services" class="footer-link nav-link" data-page="services">Services</a>
+      <a href="#pricing" class="footer-link nav-link" data-page="pricing">Pricing</a>
+      <a href="#community" class="footer-link nav-link" data-page="community">Community</a>
+    </div>
+    <div class="copyright">
+      &copy; 2026 Ai Arts Studio. All rights reserved. | Premium AI-Assisted Branding Solutions
+    </div>
   </footer>
 
+  <script>
+    // Single Page Application Navigation
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.nav-link');
+      const pages = document.querySelectorAll('.page-container');
+      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+      const navMenu = document.getElementById('navLinks');
+      
+      // Function to show a specific page
+      function showPage(pageId) {
+        // Hide all pages
+        pages.forEach(page => {
+          page.classList.remove('active');
+        });
+        
+        // Show the selected page
+        const activePage = document.getElementById(pageId);
+        if (activePage) {
+          activePage.classList.add('active');
+        }
+        
+        // Update active nav link
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('data-page') === pageId) {
+            link.classList.add('active');
+          }
+        });
+        
+        // Close mobile menu if open
+        navMenu.classList.remove('active');
+        mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        
+        // Scroll to top when changing pages
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      
+      // Mobile menu toggle
+      mobileMenuToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        if (navMenu.classList.contains('active')) {
+          this.innerHTML = '<i class="fas fa-times"></i>';
+        } else {
+          this.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+      });
+      
+      // Close menu when clicking outside on mobile
+      document.addEventListener('click', function(event) {
+        if (window.innerWidth <= 768) {
+          const isClickInsideMenu = navMenu.contains(event.target);
+          const isClickOnToggle = mobileMenuToggle.contains(event.target);
+          
+          if (!isClickInsideMenu && !isClickOnToggle && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+          }
+        }
+      });
+      
+      // Set up click events for navigation links
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const pageId = this.getAttribute('data-page');
+          if (pageId) {
+            showPage(pageId);
+            // Update URL hash without scrolling
+            history.pushState(null, null, `#${pageId}`);
+          }
+        });
+      });
+      
+      // Handle browser back/forward buttons
+      window.addEventListener('popstate', function() {
+        const hash = window.location.hash.substring(1) || 'home';
+        showPage(hash);
+      });
+      
+      // Show the page based on URL hash on initial load
+      const initialHash = window.location.hash.substring(1) || 'home';
+      showPage(initialHash);
+      
+      // Add animation to portfolio items on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+      
+      // Observe portfolio items
+      document.querySelectorAll('.portfolio-item, .pricing-card, .service-card').forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        el.style.transitionDelay = `${index * 0.1}s`;
+        observer.observe(el);
+      });
+      
+      // Adjust header on scroll for mobile
+      let lastScrollTop = 0;
+      const header = document.querySelector('header');
+      
+      window.addEventListener('scroll', function() {
+        if (window.innerWidth <= 768) {
+          let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          
+          if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Scroll down
+            header.style.transform = 'translateY(-100%)';
+            navMenu.classList.remove('active');
+            mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+          } else {
+            // Scroll up
+            header.style.transform = 'translateY(0)';
+          }
+          
+          lastScrollTop = scrollTop;
+        }
+      });
+    });
+  </script>
 </body>
 </html>
